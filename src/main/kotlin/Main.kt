@@ -33,28 +33,42 @@ fun main() = application {
 @Composable
 fun AppContent() {
     Box(modifier = Modifier.fillMaxSize()) {
-        draw7rect(55f, 10f)
+        drawWeekSquares(55f, 10f)
     }
 }
 
 
-/** Функция которая рисует 7 квадратов, отображающих неделю */
+/** Рисует вертикальный ряд из 7 квадратов, представляющих неделю.
+ *
+ *  Квадраты рисуются сверху вниз, начиная с заданной стартовой позиции.
+ *  Каждый последующий квадрат смещается на сумму его высоты [sizeRect] и расстояния [space].
+ *
+ *  @param sizeRect Размер стороны одного квадрата в пикселях.
+ *  @param space Расстояние по вертикали между квадратами в пикселях.
+ *  @param startX Координата начальной точки по оси x
+ *  @param startY Координата начальной точки по оси y
+ */
 @Composable
-fun draw7rect(sizeRect: Float, space: Float){
+fun drawWeekSquares(
+    sizeRect: Float,
+    space: Float,
+    startX : Float = 5f,
+    startY : Float = 5f
+){
     Canvas(modifier = Modifier.fillMaxSize()) {
 
-        var posX = 5f
-        var posY = 5f
+        var posX = startX
+        var posY = startY
 
 
         for (i in 1..7){
             drawRect(
-                color = Color.Red,
+                color = Color.Gray,
                 topLeft = Offset(posX, posY),
                 size = Size(sizeRect, sizeRect)
             )
 
-            posY = posY + space + sizeRect
+            posY += space + sizeRect
         }
 
     }
