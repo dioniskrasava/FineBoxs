@@ -12,6 +12,8 @@ import androidx.compose.ui.window.Window
 import androidx.compose.ui.window.application
 import androidx.compose.ui.window.rememberWindowState
 
+
+
 fun main() = application {
     val windowState = rememberWindowState(width = 800.dp, height = 600.dp)
 
@@ -25,31 +27,35 @@ fun main() = application {
         }
     }
 
-    println("Hello!!@!@!@!@!@!@!")
+
 }
 
 @Composable
 fun AppContent() {
     Box(modifier = Modifier.fillMaxSize()) {
-        Canvas(modifier = Modifier.fillMaxSize()) {
-            // Рисуем три квадрата
+        draw7rect(55f, 10f)
+    }
+}
+
+
+/** Функция которая рисует 7 квадратов, отображающих неделю */
+@Composable
+fun draw7rect(sizeRect: Float, space: Float){
+    Canvas(modifier = Modifier.fillMaxSize()) {
+
+        var posX = 5f
+        var posY = 5f
+
+
+        for (i in 1..7){
             drawRect(
                 color = Color.Red,
-                topLeft = Offset(50f, 50f),
-                size = Size(100f, 100f)
+                topLeft = Offset(posX, posY),
+                size = Size(sizeRect, sizeRect)
             )
 
-            drawRect(
-                color = Color.Green,
-                topLeft = Offset(200f, 50f),
-                size = Size(100f, 100f)
-            )
-
-            drawRect(
-                color = Color.Blue,
-                topLeft = Offset(350f, 50f),
-                size = Size(100f, 100f)
-            )
+            posY = posY + space + sizeRect
         }
+
     }
 }
