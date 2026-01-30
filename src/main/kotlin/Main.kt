@@ -1,6 +1,8 @@
 import androidx.compose.foundation.Canvas
+import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
@@ -38,39 +40,38 @@ fun main() = application {
         state = windowState
     ) {
         MaterialTheme {
-            AppContent2()
+            AppContent()
         }
     }
 
 
 }
 
-@Composable
-fun AppContent() {
-    Box(modifier = Modifier.fillMaxSize()) {
-        drawWeekSquares(55f, 10f)
 
-
-        // Кнопка в правом верхнем углу
-        Button(
-            onClick = { /* обработка клика */ },
-            modifier = Modifier
-                .align(Alignment.TopEnd)
-                .padding(16.dp) // отступ от краев
-        ) {
-            Text("Кнопка")
-        }
-
-    }
-}
 
 /** Д Л Я    Т Е С Т И Р О В А Н И Я     П О З И Ц И О Н И Р О В А Н И Я*/
 @Composable
-fun AppContent2() {
-    Row(Modifier.fillMaxWidth()) {
-        Text("Левая часть", Modifier.weight(1f)) // Занет 1 часть пространства
+fun AppContent() {
+    Row(Modifier.fillMaxWidth().background(color = Color(0f,0f,0f, 0.75f))) {
+
+        Column(Modifier.weight(5f)){
+            drawWeekSquares(35f, 10f, 10f, 20f)
+        }
+
         Divider(Modifier.width(10.dp).fillMaxHeight())
-        Text("Правая часть", Modifier.weight(2f)) // Занет 2 части пространства (в 2 раза шире)
+
+        Column(Modifier.weight(2f)){
+            // Кнопка в правом верхнем углу
+            Button(
+                onClick = { /* обработка клика */ },
+                modifier = Modifier
+                    .padding(16.dp) // отступ от краев
+            ) {
+                Text("Кнопка")
+            }
+        }
+
+
     }
 }
 
